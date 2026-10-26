@@ -9,12 +9,9 @@ import lombok.Getter;
 @AllArgsConstructor 
 public enum ErrorCode{
 
-    INVALID_AMOUNT("Amount must be greater than zero", HttpStatus.BAD_REQUEST),
-    INSUFFICIENT_BALANCE("Insufficient balance", HttpStatus.UNPROCESSABLE_CONTENT),
-    WALLET_NOT_FOUND("Wallet not found", HttpStatus.NOT_FOUND),
-    WALLET_UNAVAILABLE("Wallet is inactive or unavailable", HttpStatus.UNPROCESSABLE_CONTENT),
-    INVALID_SENDER_ID("Sender ID not Fount",HttpStatus.BAD_REQUEST);
-
+    INVALID_EMAIL_ID("email id not registered",HttpStatus.NOT_FOUND),
+    INVALID_PASSWORD("invalid password",HttpStatus.BAD_REQUEST),
+    INVALID_REFRESH_TOKEN("Invalid token",HttpStatus.BAD_REQUEST);
     private final String message;
     private final HttpStatus status;
     
