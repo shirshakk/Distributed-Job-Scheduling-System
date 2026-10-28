@@ -3,6 +3,7 @@ package com.auth.auth_service.service;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -11,9 +12,9 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 import com.auth.auth_service.dao.request.LoginRequest;
-import com.auth.auth_service.dao.request.LogoutRequest;
 import com.auth.auth_service.dao.request.RegisterRequest;
 import com.auth.auth_service.dao.response.LoginResponse;
+import com.auth.auth_service.dao.response.UserProfileResponse;
 import com.auth.auth_service.enums.ErrorCode;
 import com.auth.auth_service.enums.UserRole;
 import com.auth.auth_service.enums.UserStatus;
@@ -84,5 +85,14 @@ public class UsersService {
 
     }
 
+
+    public UserProfileResponse userProfile(UUID userId){
+        Optional<Users> user= userRepository.findById(userId);
+        Users userProfile = user.get();
+
+        UserProfileResponse response = new UserProfileResponse(userProfile.getUser_email(),userProfile.getUser_name(), userProfile.getUser_role(), userProfile.getUser_status());
+
+        return response;
+    }
     
 }

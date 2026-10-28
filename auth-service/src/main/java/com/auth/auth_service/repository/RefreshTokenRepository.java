@@ -14,6 +14,8 @@ import com.auth.auth_service.model.RefreshToken;
 public interface RefreshTokenRepository
         extends JpaRepository<RefreshToken, UUID> {
 
+    
+
     @Query("""
         SELECT r FROM RefreshToken r
         WHERE r.token_hash = :tokenHash
